@@ -1,4 +1,15 @@
 <?php
+
+add_action( 'init', 'grc_wp_init', Groups_Restrict_Categories::INIT_PRIORITY +1 );
+function grc_wp_init () {
+	if ( class_exists( 'Groups_Restrict_Categories' ) ) {
+		remove_filter( 'posts_where', array( 'Groups_Restrict_Categories', 'posts_where' ), 10 );
+		remove_filter( 'get_the_excerpt', array( 'Groups_Restrict_Categories', 'get_the_excerpt' ), 1 );
+		remove_filter( 'the_content', array( 'Groups_Restrict_Categories', 'the_content' ), 1 );
+	}
+}
+
+
 /**
  * An example of how to show excerpts for posts protected by Groups.
  */
@@ -11,12 +22,6 @@ if (
 	remove_filter( 'posts_where', array( 'Groups_Post_Access', 'posts_where' ), 10 );
 	remove_filter( 'get_the_excerpt', array( 'Groups_Post_Access', 'get_the_excerpt' ), 1 );
 	remove_filter( 'the_content', array( 'Groups_Post_Access', 'the_content' ), 1 );
-
-	if ( class_exists( 'Groups_Restrict_Categories' ) ) {
-		remove_filter( 'posts_where', array( 'Groups_Restrict_Categories', 'posts_where' ), 10 );
-		remove_filter( 'get_the_excerpt', array( 'Groups_Restrict_Categories', 'get_the_excerpt' ), 1 );
-		remove_filter( 'the_content', array( 'Groups_Restrict_Categories', 'the_content' ), 1 );
-	}
 
 	// add a filter that will show the post content for authorized users and the
 	// excerpt for those who aren't.
