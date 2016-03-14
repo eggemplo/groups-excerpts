@@ -44,7 +44,8 @@ if (
 				// show the excerpt
 				$result .= '<div>';
 				remove_filter( 'the_content', 'groups_excerpts_the_content', 1 );
-				$result .= apply_filters( 'get_the_excerpt', $post->post_excerpt );
+				//$result .= apply_filters( 'get_the_excerpt', $post->post_excerpt );
+				$result .= $post->post_excerpt;
 				add_filter( 'the_content', 'groups_excerpts_the_content', 1 );
 				$result .= '</div>';
 	
