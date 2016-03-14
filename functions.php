@@ -4,8 +4,8 @@ add_action( 'init', 'grc_wp_init', Groups_Restrict_Categories::INIT_PRIORITY +1 
 function grc_wp_init () {
 	if ( class_exists( 'Groups_Restrict_Categories' ) ) {
 		remove_filter( 'posts_where', array( 'Groups_Restrict_Categories', 'posts_where' ), 10 );
-		remove_filter( 'get_the_excerpt', array( 'Groups_Restrict_Categories', 'get_the_excerpt' ), 1 );
-		remove_filter( 'the_content', array( 'Groups_Restrict_Categories', 'the_content' ), 1 );
+		remove_filter( 'get_the_excerpt', array( 'Groups_Restrict_Categories', 'get_the_excerpt' ), 10 );
+		remove_filter( 'the_content', array( 'Groups_Restrict_Categories', 'the_content' ), 10 );
 	}
 }
 
